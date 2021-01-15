@@ -27,7 +27,7 @@ N <- 300
 #number of locations
 Place <- 3
 #contamination levels
-contamVec<- c(5,10,15)
+contamVec<- c(0.5,1,0.5)
 
 #fix to a medium "mixing level"
 probVec <- c(0.3,0.4,0.5)
@@ -58,22 +58,9 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 
 ```
 
+
 ```{r}
-beta <- c(0.5,0.5,0.5)
-
-FinalA <- createFinalAMat (N,Place,probVec)
-simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
-
-data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutput [[1]],simulationOutput [[2]],simulationOutput [[3]] ),
-                  Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
-
-ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
-  geom_line(aes(linetype=Type, color = Type))+
-  geom_point()
-```
-```{r}
-beta <- c(0.1,0.5,0.8)
+beta <- c(0.5,0.4,0.8)
 
 FinalA <- createFinalAMat (N,Place,probVec)
 simulationOutputC2_1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
@@ -88,24 +75,11 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 ```
 
 ```{r}
-probVec <- c(0.8, 0.9, 0.9)
-beta <- c(0.1,0.4,0.3)
 
-FinalA <- createFinalAMat (N,Place,probVec)
-simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
-
-data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutput [[1]],simulationOutput [[2]],simulationOutput [[3]] ),
-                  Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
-
-ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
-  geom_line(aes(linetype=Type, color = Type))+
-  geom_point()
 ```
 
 ```{r}
-probVec <- c(1, 1, 1) #all people are at all locations
-beta <- c(0.1,0.4,0.3)
+beta <- c(0.1,0.2,0.2)
 
 FinalA <- createFinalAMat (N,Place,probVec)
 simulationOutputC3_1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
@@ -123,12 +97,22 @@ Plotting the three conditions in one plot. Here only the Total Infected
 ```{r}
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutputC1 [[2]], simulationOutputC2 [[2]], simulationOutputC3 [[2]] ),
+                  Vals = c(simulationOutputC1_1 [[2]], simulationOutputC2_1 [[2]], simulationOutputC3_1 [[2]] ),
                   Type = rep(c("Condition 1", "Condition 2", "Condition3"), each=20) )
 
 
 ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
   geom_line(aes(linetype=Type, color = Type))+
   geom_point()
+
+#Cond1
+#beta <- c(1,1,1) 
+
+#Cond2
+#beta <- c(0.5,0.4,0.8)
+
+#Cond3
+#beta <- c(0.1,0.2,0.2)
+
 
 ```

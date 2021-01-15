@@ -1,5 +1,5 @@
 ---
-title: "Simulations"
+title: "Simulations Part I - fixed shedding"
 output: html_notebook
 ---
 
@@ -28,9 +28,9 @@ N <- 300
 #number of locations
 Place <- 3
 #contamination levels
-contamVec<- c(5,10,15)
+contamVec<- c(0.5,1,0.5)
 
-#shedding set to 1
+#shedding set to 0.1
 beta <- c(0.1,0.1,0.1)
 
 ```
@@ -60,18 +60,7 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 ```
 
 ```{r}
-probVec <- c(0.1, 0.1, 0.1)
 
-FinalA <- createFinalAMat (N,Place,probVec)
-simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
-
-data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutput [[1]],simulationOutput [[2]],simulationOutput [[3]] ),
-                  Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
-
-ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
-  geom_line(aes(linetype=Type, color = Type))+
-  geom_point()
 ```
 ```{r}
 probVec <- c(0.5, 0.5, 0.5)
@@ -89,18 +78,7 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 ```
 
 ```{r}
-probVec <- c(0.8, 0.8, 0.8)
 
-FinalA <- createFinalAMat (N,Place,probVec)
-simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
-
-data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutput [[1]],simulationOutput [[2]],simulationOutput [[3]] ),
-                  Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
-
-ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
-  geom_line(aes(linetype=Type, color = Type))+
-  geom_point()
 ```
 
 ```{r}
@@ -129,6 +107,10 @@ data<- data.frame(Iterations = rep(seq(1,Iterations,1),3),
 ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
   geom_line(aes(linetype=Type, color = Type))+
   geom_point()
+
+#C1: probVec <- c(0,0,0)
+#C2: probVec <- c(0.5,0.5,0.5)
+#C3: probVec <- c(1,1,1)
 
 ```
 

@@ -39,14 +39,14 @@ updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma,beta) {
 
   #Initialize a number of empty lists: 
   
-  # Number of susceptible individuals 
-  Suscep <- list()
-  Suscep[[1]] <- matrix(1,N,1)
-
   # Number of infected individuals 
   Infect <- list()
   Infect[[1]] <- matrix(0,N,1)
   Infect[[1]][c(sample(1:N, 0.01*N, replace=FALSE)),] <- 1
+  
+  # Number of susceptible individuals 
+  Suscep <- list()
+  Suscep[[1]] <- matrix(1,N,1) - Infect[[1]]
 
   # Number of recovered individuals 
   Recover <- list()
@@ -60,6 +60,8 @@ updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma,beta) {
   TotalSuscep <- numeric()
   TotalInfect <- numeric()
   TotalRecover <- numeric()
+  
+  ## change Suscep[[1]] to be Suscep - Infect 
   
   #run for i Iterations
   for (i in 2:Iterations){
