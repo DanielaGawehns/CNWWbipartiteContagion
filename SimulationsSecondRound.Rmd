@@ -45,11 +45,11 @@ Condition 1: all people distributed over 3 places with no overlap:
 #probVec[1]: probability of having a second degree at location1; other indices respectivel
 beta <- c(1,1,1)
 
-FinalA <- createInitialAMat (N,Place,probVec)
-simulationOutputC1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
+FinalA <- createFinalAMat (N,Place,probVec)
+simulationOutputC1_1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutputC1 [[1]],simulationOutputC1 [[2]],simulationOutputC1 [[3]] ),
+                  Vals = c(simulationOutputC1_1 [[1]],simulationOutputC1_1 [[2]],simulationOutputC1_1 [[3]] ),
                   Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
 
 ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
@@ -61,7 +61,7 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 ```{r}
 beta <- c(0.5,0.5,0.5)
 
-FinalA <- createInitialAMat (N,Place,probVec)
+FinalA <- createFinalAMat (N,Place,probVec)
 simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
@@ -75,11 +75,11 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 ```{r}
 beta <- c(0.1,0.5,0.8)
 
-FinalA <- createInitialAMat (N,Place,probVec)
-simulationOutputC2<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
+FinalA <- createFinalAMat (N,Place,probVec)
+simulationOutputC2_1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma, beta)
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutputC2 [[1]],simulationOutputC2 [[2]],simulationOutputC2 [[3]] ),
+                  Vals = c(simulationOutputC2_1 [[1]],simulationOutputC2_1 [[2]],simulationOutputC2_1 [[3]] ),
                   Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
 
 ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
@@ -91,7 +91,7 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 probVec <- c(0.8, 0.9, 0.9)
 beta <- c(0.1,0.4,0.3)
 
-FinalA <- createInitialAMat (N,Place,probVec)
+FinalA <- createFinalAMat (N,Place,probVec)
 simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
@@ -105,12 +105,13 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
 
 ```{r}
 probVec <- c(1, 1, 1) #all people are at all locations
+beta <- c(0.1,0.4,0.3)
 
-FinalA <- createInitialAMat (N,Place,probVec)
-simulationOutputC3<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma)
+FinalA <- createFinalAMat (N,Place,probVec)
+simulationOutputC3_1<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma,beta)
 
 data<- data.frame(Iterations = rep(seq(1,Iterations,1),3), 
-                  Vals = c(simulationOutputC3 [[1]],simulationOutputC3 [[2]],simulationOutputC3 [[3]] ),
+                  Vals = c(simulationOutputC3_1 [[1]],simulationOutputC3_1 [[2]],simulationOutputC3_1 [[3]] ),
                   Type = rep(c("TotalSusceptible", "TotalInfected", "TotalRecovered"), each=20) )
 
 ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +

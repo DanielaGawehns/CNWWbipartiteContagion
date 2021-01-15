@@ -110,7 +110,7 @@ Place <- 3
 # Choose the proportion of second degree 
 # some individuals contact several places; 
 #probVec[1]: probability of having a second degree at location1; other indices respectively
-#sums to 1
+
 #probVec <- c( 0.4, 0.4, 0.2)
 probVec <- c(0,0,0)
 
@@ -120,7 +120,7 @@ contamVec<- c(5,10,15)
 #####################################
 
 #run Simulation
-FinalA <- createInitialAMat (N,Place,probVec)
+FinalA <- createFinalAMat (N,Place,probVec)
 simulationOutput<- updateFunction (Iterations, FinalA, N, contamVec, r, gamma)
 
 ###################################
