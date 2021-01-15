@@ -35,7 +35,7 @@ createFinalAMat<- function (N,Place,probVec) {
 
 ######################################
 
-updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma) {
+updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma,beta) {
 
   #Initialize a number of empty lists: 
   
@@ -70,7 +70,7 @@ updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma) {
     
     Recover[[i]] <- Recover[[i-1]] + r*Infect[[i-1]]
     
-    E[[i]] <- E[[i-1]]*(1-gamma)+t(FinalA)%*%Infect[[i]]
+    E[[i]] <- E[[i-1]]*(1-gamma) + beta* t(FinalA)%*%Infect[[i]]
     
     TotalSuscep [i] <- mean(Suscep[[i]] )
     TotalInfect [i] <- mean(Infect[[i]] )
@@ -94,12 +94,14 @@ gamma <- 0.1
 # Environment infection parameter
 alpha <- ((r*gamma)/(N+1))
 
+#shedding rate per location
+beta<- c(0.1,0.4,0.8)
 
 # Number of iterations
 Iterations <- 20
 
 #size of population
-N <- 9000
+N <- 300
 
 #number of locations
 Place <- 3
