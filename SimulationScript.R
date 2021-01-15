@@ -8,7 +8,7 @@
 #input: N (size of population), Place (number of locations), 
 #probVec(vector of length Place with probabilities of an individual having an additional link to that place)
 
-createInitialAMat<- function (N,Place,probVec) {
+createFinalAMat<- function (N,Place,probVec) {
   
   #initalize empty matrix
   InitialA <- matrix(0,N,Place)
@@ -19,7 +19,7 @@ createInitialAMat<- function (N,Place,probVec) {
   InitialA[((N/Place)+1):(2*N/Place),2] <- 1
   
   InitialA[((2*N/Place)+1):N,3] <- 1
-  
+
   #randomly assign individuals to additional places, depending on probVec input
   
   FirstA <- cbind(InitialA[1:(N/Place),1], matrix(rbinom(N,1,probVec [1]),(N/Place),2))
@@ -109,7 +109,8 @@ Place <- 3
 # some individuals contact several places; 
 #probVec[1]: probability of having a second degree at location1; other indices respectively
 #sums to 1
-probVec <- c( 0.4, 0.4, 0.2)
+#probVec <- c( 0.4, 0.4, 0.2)
+probVec <- c(0,0,0)
 
 #contamination levels
 contamVec<- c(5,10,15)
@@ -129,6 +130,19 @@ plot(seq(1,Iterations,1), simulationOutput[[1]], type="l", col=c("blue"))
 lines(simulationOutput [[2]], col=c("red"))
 
 lines(simulationOutput [[3]], col=c("green"))
+
+
+###################
+
+#300 indiv. 3 environment
+#change % of people in 3 environment
+
+#First condition:
+#1/3, 1/3, 1/3 - everyone 1 connection
+
+#different steps/percentages also in different environment
+
+
 
 ####################
 #make ggplot graph
