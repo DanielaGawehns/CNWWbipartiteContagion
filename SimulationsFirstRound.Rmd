@@ -108,6 +108,8 @@ ggplot(data=data, aes(x=Iterations, y=Vals, group=Type)) +
   geom_line(aes(linetype=Type, color = Type))+
   geom_point()
 
+ggsave("SimulationMixing.png")
+
 #C1: probVec <- c(0,0,0)
 #C2: probVec <- c(0.5,0.5,0.5)
 #C3: probVec <- c(1,1,1)
