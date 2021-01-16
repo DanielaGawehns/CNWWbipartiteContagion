@@ -39,7 +39,7 @@ updateFunction <- function (Iterations, FinalA, N, contamVec, r, gamma,beta) {
 
   #Initialize a number of empty lists: 
   
-  # Number of infected individuals 
+  # Number of infected individuals at Init: 0.01*N
   Infect <- list()
   Infect[[1]] <- matrix(0,N,1)
   Infect[[1]][c(sample(1:N, 0.01*N, replace=FALSE)),] <- 1

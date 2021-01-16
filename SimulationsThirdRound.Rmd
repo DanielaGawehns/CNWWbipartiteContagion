@@ -18,8 +18,8 @@ Fixed Parameters:
 # Recovery rate parameter
 r <- 0.8
 # Environment infection parameter
-#alpha <- ((r*gamma)/(N+1))
-alpha <- 0.002 
+alpha <- ((r*gamma)/(N+1))
+
 # Number of iterations
 Iterations <- 20
 #size of population
@@ -42,7 +42,7 @@ gamma <- 0.1
 ```
 
 
-Condition 1: all people distributed over 3 places with no overlap:
+
 
 ```{r}
 # how many compartments/how ridgid are the compartments?
