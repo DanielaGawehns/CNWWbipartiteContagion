@@ -10,3 +10,11 @@ Yanchen Liu
 Daniela Gawehns
 
 Mentor: Laurent Hébert-Dufresne
+
+
+Contents: 
+
+The .r files contains all functions called in the three .rmd files. In the .rmd files, the simulations are run and results plotted. 
+
+
+
